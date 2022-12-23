@@ -1,0 +1,5 @@
+type QrEntry @model {
+  id: ID!
+  link: String!
+  full: Boolean
+}
