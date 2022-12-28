@@ -1,6 +1,6 @@
 projects:
   binqr:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/binqr/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
