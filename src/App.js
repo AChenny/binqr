@@ -3,7 +3,7 @@ import BinEntries from './BinEntries.js'
 import AddBinEntry from './components/AddBinEntry';
 import { Amplify, API, graphqlOperation } from 'aws-amplify'
 import { useEffect, useState } from 'react';
-import { createQrEntry } from './graphql/mutations';
+import { createQrEntry, deleteQrEntry } from './graphql/mutations';
 import { listQrEntrys } from './graphql/queries';
 
 import awsExports from "./aws-exports";
@@ -45,7 +45,11 @@ function App() {
   // Delete Entry
   async function deleteEntry(id) {
     try {
+      const condition = {
+        id: id
+      }
       setEntries(entries.filter(entry => entry.id !== id))
+      await API.graphql(graphqlOperation(deleteQrEntry, {input: condition}))
     } catch(err) {
       console.log('error deleting entry', err)
     }
