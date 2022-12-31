@@ -13,7 +13,7 @@ const BinEntries = ({entries, onDelete}) => {
         <tbody>
           {entries.map((entry, i) => {
             return [
-              <BinEntry key={entry.id} entry={entry} onDelete={onDelete}></BinEntry>
+              <BinEntry key={i} id={entry.id} entry={entry} onDelete={onDelete}/>
             ]
           })}
         </tbody>

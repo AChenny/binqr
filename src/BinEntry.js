@@ -1,8 +1,8 @@
 import { FaRegTimesCircle } from 'react-icons/fa';
 
-const BinEntry = ({entry, onDelete}) => {
+const BinEntry = ({id, entry, onDelete}) => {
   return (
-    <tr>
+    <tr key={id}>
     <td>{entry.link}</td>
     <td>{entry.full ? 'Full' : 'Not Full'}</td>
     <td><FaRegTimesCircle onClick={onDelete} /></td>
