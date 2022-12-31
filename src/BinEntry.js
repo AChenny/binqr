@@ -5,7 +5,7 @@ const BinEntry = ({id, entry, onDelete}) => {
     <tr key={id}>
     <td>{entry.link}</td>
     <td>{entry.full ? 'Full' : 'Not Full'}</td>
-    <td><FaRegTimesCircle onClick={onDelete} /></td>
+    <td><FaRegTimesCircle onClick={()=>onDelete(id)} /></td>
     </tr>
   )
 }

@@ -43,9 +43,12 @@ function App() {
   }
 
   // Delete Entry
-  async function deleteEntry() {
-    console.log("test")
-
+  async function deleteEntry(id) {
+    try {
+      setEntries(entries.filter(entry => entry.id !== id))
+    } catch(err) {
+      console.log('error deleting entry', err)
+    }
   }
   
   return (
