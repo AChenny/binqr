@@ -23,17 +23,23 @@ function App() {
       const entryData = await API.graphql(graphqlOperation(listQrEntrys))
       const entries = entryData.data.listQrEntrys.items
       setEntries(entries)
-    } catch(err) {console.log('Error fetching entries')}
+    } catch(err) {console.log('Error fetching entries', err)}
   }
 
   // Add Entry
   async function addEntry(link, full) {
     try {
+      // Get current time and store as int
+      const date = new Date()
+
       // Add to state
       const entry = {
         link: link,
-        full: full
+        full: full,
+        createdAt: date,
+        updatedAt: date
       }
+      console.log(entry)
       setEntries([...entries, entry])
       // Call graphQL query
       await API.graphql(graphqlOperation(createQrEntry, {input: entry}))

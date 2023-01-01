@@ -5,6 +5,8 @@ const BinEntry = ({id, entry, onDelete}) => {
     <tr key={id}>
     <td>{entry.link}</td>
     <td>{entry.full ? 'Full' : 'Not Full'}</td>
+    <td>{entry.createdAt ? Date(entry.createdAt) : 'N/A'}</td>
+    <td>{entry.updatedAt ? Date(entry.updatedAt) : 'N/A'}</td>
     <td><FaRegTimesCircle onClick={()=>onDelete(id)} /></td>
     </tr>
   )

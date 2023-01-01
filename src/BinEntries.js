@@ -7,6 +7,8 @@ const BinEntries = ({entries, onDelete}) => {
         <tr>
           <th>Link</th>
           <th>Full?</th>
+          <th>Created At</th>
+          <th>Updated At</th>
           <th>Delete</th>
         </tr>
         </thead>
