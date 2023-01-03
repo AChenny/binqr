@@ -10,7 +10,6 @@ import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
 
 function App() {
-  // const [entries, setEntries] = useState([{id: '1234', link: 'link1', full: true }, {id: '1235', link: 'link2', full: false } ]);
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
@@ -27,14 +26,14 @@ function App() {
   }
 
   // Add Entry
-  async function addEntry(link, full) {
+  async function addEntry(desc, full) {
     try {
       // Get current time and store as int
       const date = new Date()
 
       // Add to state
       const entry = {
-        link: link,
+        desc: desc,
         full: full,
         createdAt: date,
         updatedAt: date

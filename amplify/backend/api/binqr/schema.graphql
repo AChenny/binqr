@@ -1,7 +1,7 @@
 type QrEntry @model {
   id: ID!
   desc: String!
-  link: String!
+  link: String
   full: Boolean
   location: String
   s3link: String

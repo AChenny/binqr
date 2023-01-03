@@ -2,23 +2,22 @@ import React from 'react'
 import {useState} from 'react'
 
 
-
 const AddBinEntry = ({onAdd}) => {
   // State of all form elements
-  const [link, setLink] = useState('');
+  const [desc, setDesc] = useState('');
   const [full, setFull] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    if (!link) {
+    if (!desc) {
       // There's no QR link
       alert('Pleaase add a QR link')
       return
     }
 
-    onAdd(link, full)
-    setLink('')
+    onAdd(desc, full)
+    setDesc('')
     setFull(false)
   }
 
@@ -26,8 +25,8 @@ const AddBinEntry = ({onAdd}) => {
   return (
     <form className='add-bin-entry' onSubmit={onSubmit}>
       <div>
-        <label>QR Link</label>
-        <input type='text' value={link} onChange={(e) =>setLink(e.target.value)} placeholder="Add QR Link"/>
+        <label>QR Desc</label>
+        <input type='text' value={desc} onChange={(e) =>setDesc(e.target.value)} placeholder="Add QR Desc"/>
       </div>
       <div>
         <label>Currently Full?</label>

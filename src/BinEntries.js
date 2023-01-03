@@ -5,7 +5,7 @@ const BinEntries = ({entries, onDelete}) => {
     <table>
         <thead>
         <tr>
-          <th>Link</th>
+          <th>Desc</th>
           <th>Full?</th>
           <th>Created At</th>
           <th>Updated At</th>
