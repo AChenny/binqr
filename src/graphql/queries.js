@@ -5,8 +5,11 @@ export const getQrEntry = /* GraphQL */ `
   query GetQrEntry($id: ID!) {
     getQrEntry(id: $id) {
       id
+      desc
       link
       full
+      location
+      s3link
       createdAt
       updatedAt
     }
@@ -21,8 +24,11 @@ export const listQrEntrys = /* GraphQL */ `
     listQrEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        desc
         link
         full
+        location
+        s3link
         createdAt
         updatedAt
       }

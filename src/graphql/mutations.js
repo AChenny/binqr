@@ -8,8 +8,11 @@ export const createQrEntry = /* GraphQL */ `
   ) {
     createQrEntry(input: $input, condition: $condition) {
       id
+      desc
       link
       full
+      location
+      s3link
       createdAt
       updatedAt
     }
@@ -22,8 +25,11 @@ export const updateQrEntry = /* GraphQL */ `
   ) {
     updateQrEntry(input: $input, condition: $condition) {
       id
+      desc
       link
       full
+      location
+      s3link
       createdAt
       updatedAt
     }
@@ -36,8 +42,11 @@ export const deleteQrEntry = /* GraphQL */ `
   ) {
     deleteQrEntry(input: $input, condition: $condition) {
       id
+      desc
       link
       full
+      location
+      s3link
       createdAt
       updatedAt
     }
