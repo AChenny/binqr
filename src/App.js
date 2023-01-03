@@ -4,7 +4,7 @@ import AddBinEntry from './components/AddBinEntry';
 import { Amplify, API, graphqlOperation } from 'aws-amplify'
 import { useEffect, useState } from 'react';
 import { createQrEntry, deleteQrEntry } from './graphql/mutations';
-import { listQrEntrys } from './graphql/queries';
+import { getQrEntry, listQrEntrys } from './graphql/queries';
 
 import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
@@ -43,6 +43,9 @@ function App() {
       setEntries([...entries, entry])
       // Call graphQL query
       await API.graphql(graphqlOperation(createQrEntry, {input: entry}))
+
+      // Save the ID of the bin and create a qr that has a parameter id 
+
     } catch (err) {
       console.log('error creating entry', err)
     }
@@ -63,11 +66,12 @@ function App() {
   
   return (
     <div className="App">
-      <h2>TEST</h2>
+    <h2>QR Bin Entry</h2>
       <BinEntries entries={entries} onDelete={deleteEntry}/>
       <AddBinEntry onAdd={addEntry}/>
-    </div>
+    </div>  
   );
 }
+
 
 export default App;
