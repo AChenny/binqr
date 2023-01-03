@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "api": {
+      "binqr": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "storage": {
+      "s395f81f89": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "QrEntry:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ExternalLayer",
+      "arn": "arn:aws:lambda:us-west-2:079812072945:layer:qrLib:1"
+    }
+  ]
+}
