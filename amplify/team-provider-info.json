@@ -33,7 +33,7 @@
         "binQrGenerator": {},
         "binQrGen": {
           "deploymentBucketName": "amplify-binqr-dev-02931-deployment",
-          "s3Key": "amplify-builds/binQrGen-327a442b415450347852-build.zip"
+          "s3Key": "amplify-builds/binQrGen-62596b4351724464714b-build.zip"
         }
       }
     }
