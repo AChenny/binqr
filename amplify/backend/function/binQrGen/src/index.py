@@ -13,14 +13,16 @@ import qrcode
 import boto3
 import json
 import logging
+import io
 from botocore.exceptions import ClientError
 
 s3_client = boto3.client('s3')
 
-#s3 = boto3.cilent('s3')
+# s3 = boto3.cilent('s3')
 
 # Base URI
 uri = "https://dev.d250xcn72hsf21.amplifyapp.com"
+bucket_name = "binqrec329227790c402dadd570286bcc7fd802931-dev"
 
 def handler(event, context):
 	print("Triggered via DynamoDB")
@@ -28,29 +30,9 @@ def handler(event, context):
 	qr.add_data(uri) #gives the QR code the value of the website and the bin ID
 	qr.make(fit = True)
 	img = qr.make_image(fill = 'black', back_color = 'white')#QR image creation
-	img.save("binID" + '.png')
-	upload_file(img, "binqrec329227790c402dadd570286bcc7fd802931-dev", "binID.png")
+	in_mem_file = io.BytesIO()
+	img.save(in_mem_file, format=img.format)
+	in_mem_file.seek(0)
+	s3_client.upload_fileobj(in_mem_file, bucket_name, 'binID.png')
 	print(event)
 	return json.dumps({'status_code': 200, "message": "Received from DynamoDB"})
-
-def upload_file(file_name, bucket, object_name=None):
-    """Upload a file to an S3 bucket
-
-    :param file_name: File to upload
-    :param bucket: Bucket to upload to
-    :param object_name: S3 object name. If not specified then file_name is used
-    :return: True if file was uploaded, else False
-    """
-
-    # If S3 object_name was not specified, use file_name
-    if object_name is None:
-        object_name = os.path.basename(file_name)
-
-    # Upload the file
-    s3_client = boto3.client('s3')
-    try:
-        response = s3_client.upload_file(file_name, bucket, object_name)
-    except ClientError as e:
-        logging.error(e)
-        return False
-    return True
