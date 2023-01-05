@@ -5,6 +5,8 @@ import { Amplify, API, graphqlOperation } from 'aws-amplify'
 import { useEffect, useState } from 'react';
 import { createQrEntry, deleteQrEntry } from './graphql/mutations';
 import { listQrEntrys } from './graphql/queries';
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
@@ -64,11 +66,19 @@ function App() {
   }
   
   return (
-    <div className="App">
-    <h2>QR Bin Entry</h2>
-      <BinEntries entries={entries} onDelete={deleteEntry}/>
-      <AddBinEntry onAdd={addEntry}/>
-    </div>  
+    <Authenticator hideSignUp={true}>
+      {({ signOut, user }) => (
+        <main>
+          <div className="App">
+          <h1>Hello {user.attributes.email}</h1>
+          <button onClick={signOut}>Sign out</button>
+          <h2>QR Bin Entry</h2>
+            <BinEntries entries={entries} onDelete={deleteEntry}/>
+            <AddBinEntry onAdd={addEntry}/>
+          </div>
+        </main>
+    )}
+    </Authenticator>  
   );
 }
 

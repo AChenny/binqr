@@ -1,6 +1,6 @@
 import React from 'react'
 import { updateQrEntry } from '../graphql/mutations';
-import { Amplify, API, graphqlOperation } from 'aws-amplify'
+import { API, graphqlOperation } from 'aws-amplify'
 
 function QrScanPage() {
   const params = new URLSearchParams(window.location.search);
