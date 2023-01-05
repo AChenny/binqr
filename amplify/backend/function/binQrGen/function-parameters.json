@@ -21,5 +21,14 @@
       ]
     }
   },
+<<<<<<< HEAD
   "lambdaLayers": []
+=======
+  "lambdaLayers": [
+    {
+      "type": "ExternalLayer",
+      "arn": "arn:aws:lambda:us-west-2:079812072945:layer:qrLib:1"
+    }
+  ]
+>>>>>>> ef70f46ed714616d59b35d7d66b7c2e68643733b
 }

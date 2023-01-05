@@ -12,12 +12,6 @@
       "AmplifyAppId": "d250xcn72hsf21"
     },
     "categories": {
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d250xcn72hsf21",
-          "type": "manual"
-        }
-      },
       "auth": {
         "binqr0c8b1dc9": {}
       },
@@ -25,7 +19,19 @@
         "s395f81f89": {}
       },
       "function": {
-        "binQrGen": {}
+        "binQrGen": {
+          "deploymentBucketName": "amplify-binqr-dev-02931-deployment",
+          "s3Key": "amplify-builds/binQrGen-6d4d3056484c576f6469-build.zip"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d250xcn72hsf21",
+          "type": "manual"
+        }
+      },
+      "api": {
+        "binqr": {}
       }
     }
   }
