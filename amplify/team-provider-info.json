@@ -21,7 +21,7 @@
       "function": {
         "binQrGen": {
           "deploymentBucketName": "amplify-binqr-dev-02931-deployment",
-          "s3Key": "amplify-builds/binQrGen-4655703655545a343032-build.zip"
+          "s3Key": "amplify-builds/binQrGen-6d4d3056484c576f6469-build.zip"
         }
       },
       "hosting": {

@@ -28,7 +28,7 @@ def handler(event, context):
 	if event['Records'][0]['eventName'] == "INSERT":
 		id = event['Records'][0]['dynamodb']['Keys']['id']['S']
 		qr = qrcode.QRCode(version=1, box_size=10, border=1)
-		qr.add_data(uri + id) #gives the QR code the value of the website and the bin ID
+		qr.add_data(uri + "/qrscan?id=" + id) #gives the QR code the value of the website and the bin ID
 		qr.make(fit = True)
 		img = qr.make_image(fill = 'black', back_color = 'white')#QR image creation
 		in_mem_file = io.BytesIO()
