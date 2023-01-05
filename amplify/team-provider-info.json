@@ -12,29 +12,26 @@
       "AmplifyAppId": "d250xcn72hsf21"
     },
     "categories": {
+      "auth": {
+        "binqr0c8b1dc9": {}
+      },
+      "storage": {
+        "s395f81f89": {}
+      },
+      "function": {
+        "binQrGen": {
+          "deploymentBucketName": "amplify-binqr-dev-02931-deployment",
+          "s3Key": "amplify-builds/binQrGen-4655703655545a343032-build.zip"
+        }
+      },
       "hosting": {
         "amplifyhosting": {
           "appId": "d250xcn72hsf21",
           "type": "manual"
         }
       },
-      "auth": {
-        "binqrb90c0fd1": {},
-        "binqr0c8b1dc9": {}
-      },
       "api": {
         "binqr": {}
-      },
-      "storage": {
-        "s33be41113": {},
-        "s395f81f89": {}
-      },
-      "function": {
-        "binQrGenerator": {},
-        "binQrGen": {
-          "deploymentBucketName": "amplify-binqr-dev-02931-deployment",
-          "s3Key": "amplify-builds/binQrGen-62596b4351724464714b-build.zip"
-        }
       }
     }
   }

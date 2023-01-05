@@ -1,129 +1,95 @@
 {
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "providerPlugin": "awscloudformation",
+      "type": "manual"
+    }
+  },
   "api": {
     "binqr": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
+            "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 7,
               "description": "binqrkey"
-            },
-            "authenticationType": "API_KEY"
-          }
+            }
+          },
+          "additionalAuthenticationProviders": []
         }
-      },
-      "providerPlugin": "awscloudformation",
-      "service": "AppSync"
+      }
     }
   },
   "auth": {
     "binqr0c8b1dc9": {
-      "customAuth": false,
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
       "dependsOn": [],
+      "customAuth": false,
       "frontendAuthConfig": {
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [],
-          "passwordPolicyMinLength": 8
-        },
-        "signupAttributes": [
-          "EMAIL"
-        ],
         "socialProviders": [],
         "usernameAttributes": [
           "EMAIL"
         ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
         "verificationMechanisms": [
           "EMAIL"
         ]
-      },
+      }
+    }
+  },
+  "storage": {
+    "s395f81f89": {
+      "service": "S3",
       "providerPlugin": "awscloudformation",
-      "service": "Cognito"
+      "dependsOn": []
     }
   },
   "function": {
     "binQrGen": {
       "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
       "dependsOn": [
         {
+          "category": "api",
+          "resourceName": "binqr",
           "attributes": [
             "GraphQLAPIIdOutput",
             "GraphQLAPIEndpointOutput"
-          ],
-          "category": "api",
-          "resourceName": "binqr"
+          ]
         },
         {
+          "category": "api",
+          "resourceName": "binqr",
           "attributes": [
             "GraphQLAPIIdOutput",
             "GraphQLAPIEndpointOutput",
             "GraphQLAPIKeyOutput"
-          ],
-          "category": "api",
-          "resourceName": "binqr"
+          ]
         },
         {
+          "category": "storage",
+          "resourceName": "s395f81f89",
           "attributes": [
             "BucketName"
-          ],
-          "category": "storage",
-          "resourceName": "s395f81f89"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
-  "hosting": {
-    "amplifyhosting": {
-      "providerPlugin": "awscloudformation",
-      "service": "amplifyhosting",
-      "type": "manual"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_binQrGen_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "binQrGen"
+          ]
         }
       ]
-    },
-    "AMPLIFY_function_binQrGen_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "binQrGen"
-        }
-      ]
-    },
-    "AMPLIFY_hosting_amplifyhosting_appId": {
-      "usedBy": [
-        {
-          "category": "hosting",
-          "resourceName": "amplifyhosting"
-        }
-      ]
-    },
-    "AMPLIFY_hosting_amplifyhosting_type": {
-      "usedBy": [
-        {
-          "category": "hosting",
-          "resourceName": "amplifyhosting"
-        }
-      ]
-    }
-  },
-  "storage": {
-    "s395f81f89": {
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "S3"
     }
   }
 }
