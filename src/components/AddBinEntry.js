@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
+import BasicMap from './BinMap';
 
 
 const AddBinEntry = ({onAdd}) => {
@@ -31,6 +32,10 @@ const AddBinEntry = ({onAdd}) => {
       <div>
         <label>Currently Full?</label>
         <input type='checkbox' checked={full} value={full} onChange={(e) => setFull(e.currentTarget.checked)}/>
+      </div>
+      <div>
+        <label>Location</label>
+        <BasicMap></BasicMap>
       </div>
       <input type='submit' value='Add Entry'></input>
     </form>

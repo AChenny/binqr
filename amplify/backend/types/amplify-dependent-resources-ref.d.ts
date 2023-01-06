@@ -21,8 +21,17 @@ export type AmplifyDependentResourcesAttributes = {
     "binQrGen": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
       "Name": "string",
       "Region": "string"
+    }
+  },
+  "geo": {
+    "map08f4aa31": {
+      "Arn": "string",
+      "Name": "string",
+      "Region": "string",
+      "Style": "string"
     }
   },
   "storage": {
