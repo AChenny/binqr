@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 import BasicMap from './BinMap';
-
+import './styles/AddBinEntry.css'
 
 const AddBinEntry = ({onAdd}) => {
   // State of all form elements
@@ -34,8 +34,10 @@ const AddBinEntry = ({onAdd}) => {
         <input type='checkbox' checked={full} value={full} onChange={(e) => setFull(e.currentTarget.checked)}/>
       </div>
       <div>
-        <label>Location</label>
-        <BasicMap></BasicMap>
+        <div id='bin-map'>
+        <label id='location-label'>Location</label>
+          <BasicMap></BasicMap>
+        </div>
       </div>
       <input type='submit' value='Add Entry'></input>
     </form>
