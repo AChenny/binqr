@@ -64,7 +64,7 @@ function App() {
       console.log('error deleting entry', err)
     }
   }
-  
+
   return (
     <Authenticator hideSignUp={true}>
       {({ signOut, user }) => (

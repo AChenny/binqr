@@ -13,12 +13,11 @@ import qrcode
 import boto3
 import json
 import logging
+import os
 import io
-from botocore.exceptions import ClientError
 
 s3_client = boto3.client('s3')
-
-table = boto3.resource('dynamodb').Table('QrEntry-tuzdnjzhp5dkvkmxhqkewfnxne-dev')
+table = boto3.resource('dynamodb').Table(os.environ['API_BINQR_QRENTRYTABLE_NAME'])
 
 # Base URI
 uri = "https://dev.d250xcn72hsf21.amplifyapp.com"
@@ -35,9 +34,9 @@ def handler(event, context):
 		img.save(in_mem_file, format=img.format)
 		in_mem_file.seek(0)
 		fileName = id + '.png'
-		s3_client.upload_fileobj(in_mem_file, bucket_name, fileName)
+		s3_client.upload_fileobj(in_mem_file, os.environ['STORAGE_S395F81F89_BUCKETNAME'], "public/" + fileName)
 
-		fileURL = '%s/%s/%s' % (s3_client.meta.endpoint_url, bucket_name, fileName)
+		fileURL = '%s/%s/%s' % (s3_client.meta.endpoint_url, os.environ['STORAGE_S395F81F89_BUCKETNAME'], fileName)
 		
 		table.update_item(
 		    Key={'id': id},

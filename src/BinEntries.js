@@ -9,6 +9,7 @@ const BinEntries = ({entries, onDelete}) => {
           <th>Full?</th>
           <th>Created At</th>
           <th>Updated At</th>
+          <th>QRCode</th>
           <th>Delete</th>
         </tr>
         </thead>
