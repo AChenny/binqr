@@ -3,8 +3,6 @@ import {useState} from 'react'
 import './styles/AddBinEntry.css'
 
 import { MapView } from '@aws-amplify/ui-react';
-import { Amplify } from 'aws-amplify';
-import '@aws-amplify/ui-react/styles.css';
 
 const AddBinEntry = ({onAdd}) => {
   // State of all form elements
@@ -71,7 +69,7 @@ const AddBinEntry = ({onAdd}) => {
         <label id='location-label'>Location</label>
           <div>{lat},{lng}, {status}</div>
           <input type='button' value='Add Location' onClick={getLocation}></input>
-          {status == true ? 
+          {status === true ? 
             <div>
             <MapView 
               {...viewState}
