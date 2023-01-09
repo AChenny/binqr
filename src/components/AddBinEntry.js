@@ -1,8 +1,10 @@
 import React from 'react'
 import {useState} from 'react'
-import BasicMap from './BinMap';
 import './styles/AddBinEntry.css'
-import { useGeolocated } from "react-geolocated";
+
+import { MapView } from '@aws-amplify/ui-react';
+import { Amplify } from 'aws-amplify';
+import '@aws-amplify/ui-react/styles.css';
 
 const AddBinEntry = ({onAdd}) => {
   // State of all form elements
@@ -23,9 +25,15 @@ const AddBinEntry = ({onAdd}) => {
     setFull(false)
   }
 
+  // Geolocation props
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
+  const [viewState, setviewState] = useState({
+    latitude: 40,
+    longitude: -100,
+    zoom: 14,
+  })
 
   const getLocation = () => {
       if (!navigator.geolocation) {
@@ -33,14 +41,20 @@ const AddBinEntry = ({onAdd}) => {
   } else {
           setStatus('Locating...');
           navigator.geolocation.getCurrentPosition((position) => {
-              setStatus(null);
+              setStatus(true);
               setLat(position.coords.latitude);
               setLng(position.coords.longitude);
+              setviewState({
+                latitude: position.coords.latitude, 
+                longitude: position.coords.longitude, 
+                zoom: 13
+              });
           }, () => {
               setStatus('Unable to retrieve your location');
           });
       }
   }
+
 
   return (
     <form className='add-bin-entry' onSubmit={onSubmit}>
@@ -57,7 +71,21 @@ const AddBinEntry = ({onAdd}) => {
         <label id='location-label'>Location</label>
           <div>{lat},{lng}, {status}</div>
           <input type='button' value='Add Location' onClick={getLocation}></input>
-          <BasicMap></BasicMap>
+          {status == true ? 
+            <div>
+            <MapView 
+              {...viewState}
+              onMove={evt=> setviewState(evt.viewState)}
+              style={{
+                width: '50vw', height: '50vh'
+              }}
+            />
+            </div>
+            : 
+            <div>
+              Map not Available
+            </div>
+          }
         </div>
       </div>
       <input type='submit' value='Add Entry'></input>
