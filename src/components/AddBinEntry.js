@@ -3,6 +3,7 @@ import {useState} from 'react'
 import './styles/AddBinEntry.css'
 
 import { MapView } from '@aws-amplify/ui-react';
+import { Marker } from 'react-map-gl';
 
 const AddBinEntry = ({onAdd}) => {
   // State of all form elements
@@ -32,6 +33,7 @@ const AddBinEntry = ({onAdd}) => {
     longitude: -100,
     zoom: 14,
   })
+  const [markers, setMarkers] = useState([]);
 
   const getLocation = () => {
       if (!navigator.geolocation) {
@@ -51,6 +53,14 @@ const AddBinEntry = ({onAdd}) => {
               setStatus('Unable to retrieve your location');
           });
       }
+  }
+
+  const mapClick = (evt) => {
+    let newMarker = {
+      lat: evt.lngLat.lat,
+      lng: evt.lngLat.lng 
+    }
+    setMarkers([...markers, newMarker]);
   }
 
 
@@ -74,10 +84,17 @@ const AddBinEntry = ({onAdd}) => {
             <MapView 
               {...viewState}
               onMove={evt=> setviewState(evt.viewState)}
+              onClick={evt=> mapClick(evt)}
               style={{
                 width: '50vw', height: '50vh'
               }}
-            />
+            >
+              {markers.map((marker, i) => {
+                return [
+                  <Marker longitude={marker.lng} latitude={marker.lat}></Marker>
+                ]
+              })}
+            </MapView>
             </div>
             : 
             <div>
