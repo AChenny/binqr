@@ -34,6 +34,7 @@ const AddBinEntry = ({onAdd}) => {
     zoom: 14,
   })
   const [markers, setMarkers] = useState([]);
+  const [lastMarked, setLastMarked] = useState('');
 
   const getLocation = () => {
       if (!navigator.geolocation) {
@@ -60,9 +61,13 @@ const AddBinEntry = ({onAdd}) => {
       lat: evt.lngLat.lat,
       lng: evt.lngLat.lng 
     }
-    setMarkers([...markers, newMarker]);
+    setLastMarked(newMarker);
+    setviewState({
+      latitude: evt.lngLat.lat, 
+      longitude: evt.lngLat.lng,
+      zoom: 14
+    })
   }
-
 
   return (
     <form className='add-bin-entry' onSubmit={onSubmit}>
@@ -89,11 +94,7 @@ const AddBinEntry = ({onAdd}) => {
                 width: '50vw', height: '50vh'
               }}
             >
-              {markers.map((marker, i) => {
-                return [
-                  <Marker longitude={marker.lng} latitude={marker.lat}></Marker>
-                ]
-              })}
+            { lastMarked && (<Marker longitude={lastMarked.lng} latitude={lastMarked.lat}></Marker>) }
             </MapView>
             </div>
             : 
