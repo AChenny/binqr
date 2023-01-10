@@ -28,7 +28,7 @@ function App() {
   }
 
   // Add Entry
-  async function addEntry(desc, full) {
+  async function addEntry(desc, full, latLng) {
     try {
       // Get current time and store as int
       const date = new Date()
@@ -38,7 +38,8 @@ function App() {
         desc: desc,
         full: full,
         createdAt: date,
-        updatedAt: date
+        updatedAt: date,
+        location: latLng
       }
 
       // Call graphQL query

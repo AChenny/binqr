@@ -18,10 +18,15 @@ const AddBinEntry = ({onAdd}) => {
       alert('Pleaase add a QR link')
       return
     }
+    
+    let latLng = (lat && lng) ? `${lat},${lng}` : null;
 
-    onAdd(desc, full)
-    setDesc('')
-    setFull(false)
+    onAdd(desc, full, latLng);
+    setDesc('');
+    setFull(false);
+    setLat(null);
+    setLng(null);
+    setStatus(null)
   }
 
   // Geolocation props
@@ -33,7 +38,7 @@ const AddBinEntry = ({onAdd}) => {
     longitude: -100,
     zoom: 14,
   })
-  const [markers, setMarkers] = useState([]);
+  // const [markers, setMarkers] = useState([]);
   const [lastMarked, setLastMarked] = useState('');
 
   const getLocation = () => {
@@ -67,6 +72,8 @@ const AddBinEntry = ({onAdd}) => {
       longitude: evt.lngLat.lng,
       zoom: 14
     })
+    setLat(evt.lngLat.lat)
+    setLng(evt.lngLat.lng)
   }
 
   return (
