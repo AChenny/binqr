@@ -32,6 +32,7 @@ const BinEntry = ({id, entry, onDelete}) => {
     <td>{entry.full ? 'Full' : 'Not Full'}</td>
     <td>{entry.createdAt ? entry.createdAt : 'N/A'}</td>
     <td>{entry.updatedAt ? entry.updatedAt : 'N/A'}</td>
+    <td>{entry.location ? entry.location : 'N/A'}</td>
     <td><button onClick={()=>download(id)}> Download</button></td>
     <td><FaRegTimesCircle onClick={()=>onDelete(id)} /></td>
     </tr>
