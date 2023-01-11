@@ -5,7 +5,7 @@ import './styles/AddBinEntry.css'
 import { MapView } from '@aws-amplify/ui-react';
 import { Marker } from 'react-map-gl';
 
-const AddBinEntry = ({onAdd}) => {
+const AddBinEntry = ({onAdd, entries}) => {
   // State of all form elements
   const [desc, setDesc] = useState('');
   const [full, setFull] = useState(false);
@@ -45,20 +45,20 @@ const AddBinEntry = ({onAdd}) => {
       if (!navigator.geolocation) {
     setStatus('Geolocation is not supported by your browser');
   } else {
-          setStatus('Locating...');
-          navigator.geolocation.getCurrentPosition((position) => {
-              setStatus(true);
-              setLat(position.coords.latitude);
-              setLng(position.coords.longitude);
-              setviewState({
-                latitude: position.coords.latitude, 
-                longitude: position.coords.longitude, 
-                zoom: 13
-              });
-          }, () => {
-              setStatus('Unable to retrieve your location');
-          });
-      }
+        setStatus('Locating...');
+        navigator.geolocation.getCurrentPosition((position) => {
+            setStatus(true);
+            setLat(position.coords.latitude);
+            setLng(position.coords.longitude);
+            setviewState({
+              latitude: position.coords.latitude, 
+              longitude: position.coords.longitude, 
+              zoom: 13
+            });
+        }, () => {
+            setStatus('Unable to retrieve your location');
+        });
+    }
   }
 
   const mapClick = (evt) => {
@@ -102,6 +102,11 @@ const AddBinEntry = ({onAdd}) => {
               }}
             >
             { lastMarked && (<Marker longitude={lastMarked.lng} latitude={lastMarked.lat}></Marker>) }
+            { entries.map((entry, i) => {
+              return [
+                entry.location && (<Marker latitude={entry.location.split(',')[0]} longitude={entry.location.split(',')[1]} ></Marker>) 
+              ]
+            })}
             </MapView>
             </div>
             : 

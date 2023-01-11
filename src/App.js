@@ -75,7 +75,7 @@ function App() {
           <button onClick={signOut}>Sign out</button>
           <h2>QR Bin Entry</h2>
             <BinEntries entries={entries} onDelete={deleteEntry}/>
-            <AddBinEntry onAdd={addEntry}/>
+            <AddBinEntry onAdd={addEntry} entries={entries}/>
           </div>
         </main>
     )}
