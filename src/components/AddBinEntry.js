@@ -55,6 +55,10 @@ const AddBinEntry = ({onAdd, entries}) => {
               longitude: position.coords.longitude, 
               zoom: 13
             });
+            setLastMarked({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            })
         }, () => {
             setStatus('Unable to retrieve your location');
         });
@@ -90,7 +94,7 @@ const AddBinEntry = ({onAdd, entries}) => {
         <div id='bin-map'>
         <label id='location-label'>Location</label>
           <div>{lat},{lng}, {status}</div>
-          <input type='button' value='Add Location' onClick={getLocation}></input>
+          <input type='button' value='Use Current Location' onClick={getLocation}></input>
           {status === true ? 
             <div>
             <MapView 
