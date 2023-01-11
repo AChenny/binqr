@@ -101,7 +101,7 @@ const AddBinEntry = ({onAdd, entries}) => {
                 width: '50vw', height: '50vh'
               }}
             >
-            { lastMarked && (<Marker longitude={lastMarked.lng} latitude={lastMarked.lat}></Marker>) }
+            { lastMarked && (<Marker longitude={lastMarked.lng} latitude={lastMarked.lat} color='#F70C0C'></Marker>) }
             { entries.map((entry, i) => {
               return [
                 entry.location && (<Marker latitude={entry.location.split(',')[0]} longitude={entry.location.split(',')[1]} ></Marker>) 
