@@ -41,3 +41,14 @@
   top: 16px;
   right: 16px;
 }
+
+.bin-map {
+  display: flex;
+  flex-direction: column;
+}
+
+.map-cotainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

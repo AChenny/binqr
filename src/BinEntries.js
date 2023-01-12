@@ -15,7 +15,7 @@ const BinEntries = ({entries, onDelete}) => {
       <Table sx={{ minWidth: 650 }} aria-label='simple table'>
         <TableHead>
           <TableRow>
-            <TableCell sx={{fontWeight: 'bold'}}>Desc</TableCell>
+            <TableCell sx={{fontWeight: 'bold'}}>Description</TableCell>
             <TableCell sx={{fontWeight: 'bold'}}>Full?</TableCell>
             <TableCell sx={{fontWeight: 'bold'}}>Created At</TableCell>
             <TableCell sx={{fontWeight: 'bold'}}>Updated At</TableCell>

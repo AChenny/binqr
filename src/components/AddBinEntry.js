@@ -5,6 +5,8 @@ import '../styles/AddBinEntry.css'
 import { MapView } from '@aws-amplify/ui-react';
 import { Marker } from 'react-map-gl';
 
+import { Button, TextField, InputLabel } from '@mui/material';
+
 const AddBinEntry = ({onAdd, entries, addBinShow, setAddBinShow}) => {
   // State of all form elements
   const [desc, setDesc] = useState('');
@@ -26,7 +28,8 @@ const AddBinEntry = ({onAdd, entries, addBinShow, setAddBinShow}) => {
     setFull(false);
     setLat(null);
     setLng(null);
-    setStatus(null)
+    setStatus(null);
+    setAddBinShow(false);
   }
 
   // Geolocation props
@@ -71,11 +74,6 @@ const AddBinEntry = ({onAdd, entries, addBinShow, setAddBinShow}) => {
       lng: evt.lngLat.lng 
     }
     setLastMarked(newMarker);
-    setviewState({
-      latitude: evt.lngLat.lat, 
-      longitude: evt.lngLat.lng,
-      zoom: 14
-    })
     setLat(evt.lngLat.lat)
     setLng(evt.lngLat.lng)
   }
@@ -85,46 +83,40 @@ const AddBinEntry = ({onAdd, entries, addBinShow, setAddBinShow}) => {
       <div className='popup-inner'>
         <form className='add-bin-entry' onSubmit={onSubmit}>
           <div>
-            <label>QR Desc</label>
-            <input type='text' value={desc} onChange={(e) =>setDesc(e.target.value)} placeholder="Add QR Desc"/>
+            <TextField helperText='Required' value={desc} onChange={(e) =>setDesc(e.target.value)} label='Add QR Description' variant='outlined'/>
+            {/* <input type='text' value={desc} onChange={(e) =>setDesc(e.target.value)} placeholder="Add QR Desc"/> */}
           </div>
-          <div>
-            <label>Currently Full?</label>
-            <input type='checkbox' checked={full} value={full} onChange={(e) => setFull(e.currentTarget.checked)}/>
+          <div className='bin-map'>
+          <label id='location-label'>Location</label>
+            <div>{lat},{lng}, {status}</div>
+            <input type='button' value='Use Current Location' onClick={getLocation}></input>
+            {status === true ? 
+              <div className='map-container'>
+              <MapView 
+                {...viewState}
+                onMove={evt=> setviewState(evt.viewState)}
+                onClick={evt=> mapClick(evt)}
+                style={{
+                  width: '100%', height: '50vh',
+                }}
+              >
+              { lastMarked && (<Marker longitude={lastMarked.lng} latitude={lastMarked.lat} color='#F70C0C'></Marker>) }
+              { entries.map((entry, i) => {
+                return [
+                  entry.location && (<Marker key={i} latitude={entry.location.split(',')[0]} longitude={entry.location.split(',')[1]} ></Marker>) 
+                ]
+              })}
+              </MapView>
+              </div>
+              : 
+              <div>
+                Map not Available
+              </div>
+            }
           </div>
-          <div>
-            <div id='bin-map'>
-            <label id='location-label'>Location</label>
-              <div>{lat},{lng}, {status}</div>
-              <input type='button' value='Use Current Location' onClick={getLocation}></input>
-              {status === true ? 
-                <div>
-                <MapView 
-                  {...viewState}
-                  onMove={evt=> setviewState(evt.viewState)}
-                  onClick={evt=> mapClick(evt)}
-                  style={{
-                    width: '50vw', height: '50vh'
-                  }}
-                >
-                { lastMarked && (<Marker longitude={lastMarked.lng} latitude={lastMarked.lat} color='#F70C0C'></Marker>) }
-                { entries.map((entry, i) => {
-                  return [
-                    entry.location && (<Marker latitude={entry.location.split(',')[0]} longitude={entry.location.split(',')[1]} ></Marker>) 
-                  ]
-                })}
-                </MapView>
-                </div>
-                : 
-                <div>
-                  Map not Available
-                </div>
-              }
-            </div>
-          </div>
-          <input type='submit' value='Add Entry'></input>
+          <Button type='submit' variant='contained'>Add Entry</Button>
         </form>
-        <button className='close-btn' onClick={()=>{setAddBinShow(false)}}>Cancel</button>
+        <Button className='close-btn' variant='outlined' onClick={()=>{setAddBinShow(false)}}>Cancel</Button>
       </div>
     </div>
   )
