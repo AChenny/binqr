@@ -1,3 +1,11 @@
+:root {
+  --color1: #2B3A67;
+  --color2: #496A81;
+  --color3: #66999B;
+  --color4: #B3AF8F;
+  --color5: #FFC482;
+}
+
 #bin-map {
   height: 10%;
   width: 50px;
@@ -17,6 +25,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 .popup-inner {

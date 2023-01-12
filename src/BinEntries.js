@@ -1,8 +1,10 @@
 import BinEntry from './BinEntry.js'
+import './styles/BinEntries.css'
 
 const BinEntries = ({entries, onDelete}) => {
   return (
-    <table>
+    <div className='bin-table-container'>
+      <table >
         <thead>
         <tr>
           <th>Desc</th>
@@ -22,6 +24,7 @@ const BinEntries = ({entries, onDelete}) => {
           })}
         </tbody>
       </table>
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
-import './styles/AddBinEntry.css'
+import '../styles/AddBinEntry.css'
 
 import { MapView } from '@aws-amplify/ui-react';
 import { Marker } from 'react-map-gl';

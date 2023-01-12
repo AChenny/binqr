@@ -7,6 +7,7 @@ import { createQrEntry, deleteQrEntry } from './graphql/mutations';
 import { listQrEntrys } from './graphql/queries';
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import { Button } from '@mui/material';
 
 import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
@@ -72,12 +73,18 @@ function App() {
       {({ signOut, user }) => (
         <main>
           <div className="App">
-          <h1>Hello {user.attributes.email}</h1>
-          <button onClick={signOut}>Sign out</button>
-          <h2>QR Bin Entry</h2>
-            <BinEntries entries={entries} onDelete={deleteEntry}/>
-            <button onClick={() => {setAddBinShow(true)}}>Add Bin</button>
-            <AddBinEntry onAdd={addEntry} entries={entries} addBinShow={addBinShow} setAddBinShow={(obj)=> setAddBinShow(obj) }/>
+            <div className='header'>
+              <h1 className='header-title'>QR Bin Admin Dashboard</h1>
+              <div className='header-user-logout'>
+                <h3 className='header-user-id'>Hello {user.attributes.email}</h3>
+                <Button variant='outlined' className='header-logout button1' onClick={signOut}>Sign out</Button>
+              </div>
+            </div>
+            <div className='bin-entries'>
+              <BinEntries entries={entries} onDelete={deleteEntry}/>
+              <AddBinEntry onAdd={addEntry} entries={entries} addBinShow={addBinShow} setAddBinShow={(obj)=> setAddBinShow(obj) }/>
+            </div>
+            <Button variant='contained' className='add-bin-btn' onClick={() => {setAddBinShow(true)}}>Add Bin</Button>
           </div>
         </main>
     )}

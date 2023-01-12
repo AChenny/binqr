@@ -1,6 +1,7 @@
 import { FaRegTimesCircle } from 'react-icons/fa';
 import { Amplify, Storage } from 'aws-amplify'
 import awsExports from "./aws-exports";
+import { Button } from '@mui/material'
 
 Amplify.configure(awsExports);
 
@@ -33,8 +34,8 @@ const BinEntry = ({id, entry, onDelete}) => {
     <td>{entry.createdAt ? entry.createdAt : 'N/A'}</td>
     <td>{entry.updatedAt ? entry.updatedAt : 'N/A'}</td>
     <td>{entry.location ? entry.location : 'N/A'}</td>
-    <td><button onClick={()=>download(id)}> Download</button></td>
-    <td><FaRegTimesCircle onClick={()=>onDelete(id)} /></td>
+    <td><Button variant='contained' onClick={()=>download(id)}> Download</Button></td>
+    <td><FaRegTimesCircle className='entries-delete-btn' onClick={()=>onDelete(id)} /></td>
     </tr>
   )
 }

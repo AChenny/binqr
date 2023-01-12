@@ -1,38 +1,89 @@
+:root {
+  --color1: #2B3A67;
+  --color2: #496A81;
+  --color3: #66999B;
+  --color4: #B3AF8F;
+  --color5: #FFC482;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* Header styles */
+.header {
+  background-color: var(--color1);
+  display: flex;
+  align-items: space-between;
+}
+
+.header-title {
+  flex-grow: 2;
+  text-align: start;
+  padding-left: 10%;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.header-user-id {
+  align-self: stretch;
+  flex-grow: 1;
+  margin: 0;
+  margin-top: 5%;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.header-user-logout {
+  padding-right: 5%;
+}
+
+.header-logout {
+  margin: 0;
+  background-color: var(--color4);
+}
+
+/* Buttons */
+.button1 {
+  border: 0;
+  border-radius: .25rem;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  line-height: 1.75rem; /* 28px */
+  padding: 1rem 1.25rem;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button1:hover {
+  box-shadow: none;
+}
+
+@media (min-width: 1024px) {
+  .button1 {
+    font-size: 1.5rem; /* 24px */
+    padding: 1rem 1.5rem;
+    line-height: 2rem; /* 32px */
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+.bin-entries {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-bin-btn {
+  /* flex-wrap: wrap; */
+  background-color: var(--color2);
+}
+
+.close-btn {
+  display: flex;
 }
