@@ -5,7 +5,7 @@ import './styles/AddBinEntry.css'
 import { MapView } from '@aws-amplify/ui-react';
 import { Marker } from 'react-map-gl';
 
-const AddBinEntry = ({onAdd, entries}) => {
+const AddBinEntry = ({onAdd, entries, addBinShow, setAddBinShow}) => {
   // State of all form elements
   const [desc, setDesc] = useState('');
   const [full, setFull] = useState(false);
@@ -80,48 +80,51 @@ const AddBinEntry = ({onAdd, entries}) => {
     setLng(evt.lngLat.lng)
   }
 
-  return (
-    <form className='add-bin-entry' onSubmit={onSubmit}>
-      <div>
-        <label>QR Desc</label>
-        <input type='text' value={desc} onChange={(e) =>setDesc(e.target.value)} placeholder="Add QR Desc"/>
-      </div>
-      <div>
-        <label>Currently Full?</label>
-        <input type='checkbox' checked={full} value={full} onChange={(e) => setFull(e.currentTarget.checked)}/>
-      </div>
-      <div>
-        <div id='bin-map'>
-        <label id='location-label'>Location</label>
-          <div>{lat},{lng}, {status}</div>
-          <input type='button' value='Use Current Location' onClick={getLocation}></input>
-          {status === true ? 
-            <div>
-            <MapView 
-              {...viewState}
-              onMove={evt=> setviewState(evt.viewState)}
-              onClick={evt=> mapClick(evt)}
-              style={{
-                width: '50vw', height: '50vh'
-              }}
-            >
-            { lastMarked && (<Marker longitude={lastMarked.lng} latitude={lastMarked.lat} color='#F70C0C'></Marker>) }
-            { entries.map((entry, i) => {
-              return [
-                entry.location && (<Marker latitude={entry.location.split(',')[0]} longitude={entry.location.split(',')[1]} ></Marker>) 
-              ]
-            })}
-            </MapView>
-            </div>
-            : 
-            <div>
-              Map not Available
-            </div>
-          }
+  return (addBinShow) && (
+    <div>
+      <form className='add-bin-entry' onSubmit={onSubmit}>
+        <div>
+          <label>QR Desc</label>
+          <input type='text' value={desc} onChange={(e) =>setDesc(e.target.value)} placeholder="Add QR Desc"/>
         </div>
-      </div>
-      <input type='submit' value='Add Entry'></input>
-    </form>
+        <div>
+          <label>Currently Full?</label>
+          <input type='checkbox' checked={full} value={full} onChange={(e) => setFull(e.currentTarget.checked)}/>
+        </div>
+        <div>
+          <div id='bin-map'>
+          <label id='location-label'>Location</label>
+            <div>{lat},{lng}, {status}</div>
+            <input type='button' value='Use Current Location' onClick={getLocation}></input>
+            {status === true ? 
+              <div>
+              <MapView 
+                {...viewState}
+                onMove={evt=> setviewState(evt.viewState)}
+                onClick={evt=> mapClick(evt)}
+                style={{
+                  width: '50vw', height: '50vh'
+                }}
+              >
+              { lastMarked && (<Marker longitude={lastMarked.lng} latitude={lastMarked.lat} color='#F70C0C'></Marker>) }
+              { entries.map((entry, i) => {
+                return [
+                  entry.location && (<Marker latitude={entry.location.split(',')[0]} longitude={entry.location.split(',')[1]} ></Marker>) 
+                ]
+              })}
+              </MapView>
+              </div>
+              : 
+              <div>
+                Map not Available
+              </div>
+            }
+          </div>
+        </div>
+        <input type='submit' value='Add Entry'></input>
+      </form>
+      <button onClick={()=>{setAddBinShow(false)}}>Cancel</button>
+    </div>
   )
 }
 

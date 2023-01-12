@@ -13,6 +13,7 @@ Amplify.configure(awsExports);
 
 function App() { 
   const [entries, setEntries] = useState([]);
+  const [addBinShow, setAddBinShow] = useState(false);
 
   useEffect(() => {
     fetchEntries()
@@ -75,7 +76,8 @@ function App() {
           <button onClick={signOut}>Sign out</button>
           <h2>QR Bin Entry</h2>
             <BinEntries entries={entries} onDelete={deleteEntry}/>
-            <AddBinEntry onAdd={addEntry} entries={entries}/>
+            <button onClick={() => {setAddBinShow(true)}}>Add Bin</button>
+            <AddBinEntry onAdd={addEntry} entries={entries} addBinShow={addBinShow} setAddBinShow={(obj)=> setAddBinShow(obj) }/>
           </div>
         </main>
     )}
