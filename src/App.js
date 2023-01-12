@@ -84,7 +84,9 @@ function App() {
               <BinEntries entries={entries} onDelete={deleteEntry}/>
               <AddBinEntry onAdd={addEntry} entries={entries} addBinShow={addBinShow} setAddBinShow={(obj)=> setAddBinShow(obj) }/>
             </div>
-            <Button variant='contained' className='add-bin-btn' onClick={() => {setAddBinShow(true)}}>Add Bin</Button>
+            <div className='add-bin-btn'>
+              <Button sx={{ width: 125, height: 75}} variant='contained' onClick={() => {setAddBinShow(true)}}>Add Bin</Button>
+            </div>
           </div>
         </main>
     )}

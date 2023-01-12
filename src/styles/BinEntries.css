@@ -1,12 +1,7 @@
-.bin-table-container {
-  overflow-x: auto;
-}
-
-.entries-download-btn {
-  background-color: var(--color3);
-}
-
 .entries-delete-btn {
   cursor: pointer;
   font-size: x-large;
+}
+
+.entries-table {
 }

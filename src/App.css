@@ -81,7 +81,8 @@
 
 .add-bin-btn {
   /* flex-wrap: wrap; */
-  background-color: var(--color2);
+  /* background-color: var(--color2); */
+  margin-top: 10px;
 }
 
 .close-btn {
