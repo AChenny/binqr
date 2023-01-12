@@ -29,12 +29,20 @@ async function download(id) {
 }
 
 const BinEntry = ({id, entry, onDelete}) => {
+  const dateFormat = (dateString) => {
+    let dateObject = new Date(Date.parse(dateString));
+    let newDateString = `${dateObject.getMonth() + 1}/${dateObject.getDate() + 1}/${dateObject.getFullYear()} ${dateObject.getHours()}:${(dateObject.getMinutes() < 10) ? '0' + dateObject.getMinutes() : dateObject.getMinutes()}`;
+
+    return newDateString;
+  }
+
+
   return (
     <TableRow  sx={{ '&:last-child td, &:last-child th': { border: 0 } }} key={id}>
       <TableCell>{entry.desc}</TableCell>
       <TableCell>{entry.full ? 'Full' : 'Not Full'}</TableCell>
-      <TableCell>{entry.createdAt ? entry.createdAt : 'N/A'}</TableCell>
-      <TableCell>{entry.updatedAt ? entry.updatedAt : 'N/A'}</TableCell>
+      <TableCell>{entry.createdAt ? dateFormat(entry.createdAt) : 'N/A'}</TableCell>
+      <TableCell>{entry.updatedAt ? dateFormat(entry.updatedAt) : 'N/A'}</TableCell>
       <TableCell>{entry.location ? entry.location : 'N/A'}</TableCell>
       <TableCell><Button variant='contained' onClick={()=>download(id)}> Download</Button></TableCell>
       <TableCell align='center' size='small'><FaRegTimesCircle className='entries-delete-btn' onClick={()=>onDelete(id)} /></TableCell>
