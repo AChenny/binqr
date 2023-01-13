@@ -5,7 +5,7 @@ import '../styles/AddBinEntry.css'
 import { MapView } from '@aws-amplify/ui-react';
 import { Marker } from 'react-map-gl';
 
-import { Button, TextField, InputLabel } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 
 const AddBinEntry = ({onAdd, entries, addBinShow, setAddBinShow}) => {
   // State of all form elements

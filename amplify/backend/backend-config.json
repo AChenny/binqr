@@ -78,24 +78,6 @@
       "service": "Lambda"
     }
   },
-  "geo": {
-    "map08f4aa31": {
-      "accessType": "AuthorizedUsers",
-      "dependsOn": [
-        {
-          "attributes": [
-            "UserPoolId"
-          ],
-          "category": "auth",
-          "resourceName": "binqr0c8b1dc9"
-        }
-      ],
-      "isDefault": true,
-      "mapStyle": "VectorEsriStreets",
-      "providerPlugin": "awscloudformation",
-      "service": "Map"
-    }
-  },
   "hosting": {
     "amplifyhosting": {
       "providerPlugin": "awscloudformation",
