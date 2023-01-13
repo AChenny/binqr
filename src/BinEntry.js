@@ -3,6 +3,9 @@ import { FaRegTimesCircle } from 'react-icons/fa';
 import { Amplify, Storage, API, graphqlOperation  } from 'aws-amplify'
 import { updateQrEntry } from './graphql/mutations';
 import awsExports from "./aws-exports";
+import { Button } from '@mui/material'
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
 import { Checkbox } from '@mui/material';
 
 Amplify.configure(awsExports);
@@ -42,24 +45,33 @@ async function updateBinStatus (id, value) {
   }
 }
 
-function BinEntry({id, entry, onDelete}) {
+
+const BinEntry = ({id, entry, onDelete}) => {
   const [isChecked, setIsChecked] = useState(entry.full);
+
+  const dateFormat = (dateString) => {
+    let dateObject = new Date(Date.parse(dateString));
+    let newDateString = `${dateObject.getMonth() + 1}/${dateObject.getDate() + 1}/${dateObject.getFullYear()} ${dateObject.getHours()}:${(dateObject.getMinutes() < 10) ? '0' + dateObject.getMinutes() : dateObject.getMinutes()}`;
+
+    return newDateString;
+  }
 
   const handleOnChange = () => {
     setIsChecked(!isChecked);
     updateBinStatus(id, isChecked)
   };
 
+
   return (
-    <tr key={id}>
-    <td>{entry.desc}</td>
-    <td><Checkbox checked={isChecked} onChange={handleOnChange}></Checkbox></td>
-    <td>{entry.createdAt ? entry.createdAt : 'N/A'}</td>
-    <td>{entry.updatedAt ? entry.updatedAt : 'N/A'}</td>
-    <td>{entry.location ? entry.location : 'N/A'}</td>
-    <td><button onClick={()=>download(id)}> Download</button></td>
-    <td><FaRegTimesCircle onClick={()=>onDelete(id)} /></td>
-    </tr>
+    <TableRow  sx={{ '&:last-child td, &:last-child th': { border: 0 } }} key={id}>
+      <TableCell>{entry.desc}</TableCell>
+      <TableCell><Checkbox checked={isChecked} onChange={handleOnChange}></Checkbox></TableCell>
+      <TableCell>{entry.createdAt ? dateFormat(entry.createdAt) : 'N/A'}</TableCell>
+      <TableCell>{entry.updatedAt ? dateFormat(entry.updatedAt) : 'N/A'}</TableCell>
+      <TableCell>{entry.location ? entry.location : 'N/A'}</TableCell>
+      <TableCell><Button variant='contained' onClick={()=>download(id)}> Download</Button></TableCell>
+      <TableCell align='center' size='small'><FaRegTimesCircle className='entries-delete-btn' onClick={()=>onDelete(id)} /></TableCell>
+    </TableRow>
   )
 }
 

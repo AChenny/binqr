@@ -1,0 +1,54 @@
+:root {
+  --color1: #2B3A67;
+  --color2: #496A81;
+  --color3: #66999B;
+  --color4: #B3AF8F;
+  --color5: #FFC482;
+}
+
+#bin-map {
+  height: 10%;
+  width: 50px;
+}
+#location-label {
+  float: left;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.popup-inner {
+  position: relative;
+  padding: 32px;
+  width: 100%;
+  max-width: 640px;
+  background-color: #FFF;
+}
+
+.popup-inner .close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.bin-map {
+  display: flex;
+  flex-direction: column;
+}
+
+.map-cotainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
