@@ -89,7 +89,7 @@ const AddBinEntry = ({onAdd, entries, addBinShow, setAddBinShow}) => {
           <div className='bin-map'>
           <label id='location-label'>Location</label>
             <div>{lat},{lng}, {status}</div>
-            <input type='button' value='Use Current Location' onClick={getLocation}></input>
+            <Button variant='contained' value='Use Current Location' onClick={getLocation}>Use Current Location</Button>
             {status === true ? 
               <div className='map-container'>
               <MapView 

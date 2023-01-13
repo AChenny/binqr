@@ -88,3 +88,11 @@
 .close-btn {
   display: flex;
 }
+
+.auth {
+  /* Center vertically and horizontally */
+  top: 50%;
+ align-items: center;
+ padding-top: 20%;
+
+}

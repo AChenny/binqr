@@ -56,7 +56,11 @@ function QrScanPage() {
         </AccordionSummary>
         <AccordionDetails>
           <Authenticator hideSignUp={true}>
-            <button onClick={() => fullReport(id, false)}>Reset</button> 
+          {({ signOut }) => (
+            <><Button variant='contained' sx={{ px: 4, py: 2, margin: 2 }} onClick={() => fullReport(id, false)}>Reset</Button><div className='header-user-logout'>
+              <Button variant='outlined' style={{ marginRight: 'auto' }} onClick={signOut}>Sign out</Button>
+              </div></>
+          )} 
           </Authenticator>
         </AccordionDetails>
       </Accordion>

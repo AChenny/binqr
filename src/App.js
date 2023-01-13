@@ -69,9 +69,8 @@ function App() {
   }
 
   return (
-    <Authenticator hideSignUp={true}>
+    <Authenticator hideSignUp={true} className="auth">
       {({ signOut, user }) => (
-        <main>
           <div className="App">
             <div className='header'>
               <h1 className='header-title'>QR Bin Admin Dashboard</h1>
@@ -88,9 +87,8 @@ function App() {
               <Button sx={{ width: 125, height: 75}} variant='contained' onClick={() => {setAddBinShow(true)}}>Add Bin</Button>
             </div>
           </div>
-        </main>
     )}
-    </Authenticator>  
+    </Authenticator> 
   );
 }
 
