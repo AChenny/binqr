@@ -36,6 +36,7 @@
 
 .header-user-logout {
   padding-right: 5%;
+  padding-bottom: 2%;
 }
 
 .header-logout {
@@ -94,4 +95,24 @@
   top: 50%;
  align-items: center;
  padding-top: 20%;
+}
+
+/* Smaller device */
+@media (max-width: 538px) {
+  .header {
+    flex-direction: column;
+  }
+  .header-user-logout {
+    text-align: center;
+  }
+  .header-user-id {
+    align-content: center;
+    padding: 5px;
+  }
+
+  .header-title {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+  }
 }
