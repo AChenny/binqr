@@ -27,7 +27,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "geo": {
-    "map08f4aa31": {
+    "mapb2ca15ea": {
       "Arn": "string",
       "Name": "string",
       "Region": "string",
