@@ -82,9 +82,8 @@ const AddBinEntry = ({onAdd, entries, addBinShow, setAddBinShow}) => {
     <div className='popup'>
       <div className='popup-inner'>
         <form className='add-bin-entry' onSubmit={onSubmit}>
-          <div>
+          <div className='form-desc'>
             <TextField helperText='Required' value={desc} onChange={(e) =>setDesc(e.target.value)} label='Add QR Description' variant='outlined'/>
-            {/* <input type='text' value={desc} onChange={(e) =>setDesc(e.target.value)} placeholder="Add QR Desc"/> */}
           </div>
           <div className='bin-map'>
           <label id='location-label'>Location</label>
@@ -116,7 +115,7 @@ const AddBinEntry = ({onAdd, entries, addBinShow, setAddBinShow}) => {
           </div>
           <Button type='submit' variant='contained'>Add Entry</Button>
         </form>
-        <Button className='close-btn' variant='outlined' onClick={()=>{setAddBinShow(false)}}>Cancel</Button>
+        <Button className='close-btn' sx={{width: {xs: 30, sm: 75, md: 100, lg: 200, xl: 250},}} size='medium' variant='outlined' onClick={()=>{setAddBinShow(false)}}>Cancel</Button>
       </div>
     </div>
   )
